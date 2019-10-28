@@ -8,11 +8,12 @@ class HomeController extends Controller {
     ctx.body = 'hello, egg';
   }
   async test() {
-    const { ctx } = this;
-    console.log(ctx.query);
-    ctx.body = 'hello, test';
+    const { app } = this;
+    const res = await app.mysql.select('order_detail');
+    console.log(res);
+    return res;
+    // ctx.body = `${res[0].id}`;
   }
 }
 
 module.exports = HomeController;
- 
